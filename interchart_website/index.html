@@ -341,33 +341,39 @@
 
 <section class="section" id="input-formats">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Visual Input Formats</h2>
+    <h2 class="title is-3 has-text-centered">Evaluation Pipeline</h2>
 
     <div class="content has-text-justified">
       <p>
-        In <span style="font-variant: small-caps;">InterChart</span>, multi-chart contexts are provided in two formats:
-        <strong>Combined</strong> (all charts stitched on a single canvas) and
-        <strong>Interleaved</strong> (each chart supplied as a separate image in order).
-        Both use the same textual QA context, allowing us to isolate the effect of packing charts together
-        versus presenting them sequentially on model reasoning and evidence use.
+        The <span style="font-variant: small-caps;">InterChart</span> evaluation pipeline assesses how vision-language models (VLMs) understand and reason across multi-chart visual contexts. 
+        The process operates in three stages:
+        <strong>Dataset Generation</strong> — creating diverse question–answer pairs through LLM-assisted synthesis and human validation for the three subsets 
+        (<em>DECAF</em>, <em>SPECTRA</em>, and <em>STORM</em>); 
+        <strong>Reasoning and Prompting</strong> — feeding charts and their metadata into models using different input formats (Combined or Interleaved) and prompting strategies such as 
+        zero-shot, zero-shot-CoT, and few-shot CoT with directives; 
+        and <strong>Answer Evaluation</strong> — aggregating responses using multiple LLM-based semantic judges (Gemini, Phi, and Qwen) through majority voting to ensure consistent, robust scoring.
+      </p>
+
+      <p>
+        This multi-judge evaluation design moves beyond exact string matching and accounts for semantic equivalence, numeric tolerance, and reasoning correctness. 
+        It provides a transparent framework for analyzing both local and cross-chart reasoning failures, setting a foundation for future multimodal diagnostic benchmarks.
       </p>
     </div>
 
+
     <div class="columns is-centered" style="margin-top: 1rem;">
       <div class="column is-10 has-text-centered">
-        <figure class="image" style="max-width:60%; margin:0 auto;">
+        <figure class="image" style="max-width:100%; margin:0 auto;">
           <!-- Save your provided figure as images/input_formats.png (or update the path) -->
           <img
-            src="images/v.png"
-            alt="Visual input formats in InterChart: Combined (stitched multi-chart) vs. Interleaved (separate sequential charts) with shared textual QA."
+            src="images/Interchart.png"
+            alt="Overview of the InterChart Benchmark Pipeline."
+
             class="img-shadow"
             style="width:100%; border-radius:8px;" />
         </figure>
         <p class="is-size-6 has-text-grey" style="margin-top:.6rem;">
-          Figure. Visual input formats in <span style="font-variant: small-caps;">InterChart</span>:
-          <em>Combined</em> (stitched multi-chart image) and <em>Interleaved</em> (separate, ordered images),
-          evaluated under the same textual QA.
-        </p>
+        Overview of the <span style="font-variant: small-caps;">InterChart</span> Benchmark Pipeline. </p>
       </div>
     </div>
   </div>
